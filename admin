@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <title>Global Text Admin</title>
+</head>
+<body>
+  <h1>Send Message to Everyone</h1>
+  <input id="msg" placeholder="Type message..." />
+  <button onclick="send()">Send</button>
+
+  <script>
+    function send() {
+      fetch("https://globaltext.vercel.app/api/setMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: document.getElementById("msg").value })
+      })
+      .then(res => res.json())
+      .then(data => console.log("Server response:", data));
+    }
+  </script>
+</body>
+</html>
