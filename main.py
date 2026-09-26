@@ -10,6 +10,13 @@ def set_message():
     latest_message = data.get("message", latest_message)
     return jsonify({"ok": True})
 
+from flask import send_from_directory
+
+@app.route('/admin.html')
+def admin_page():
+    return send_from_directory('public', 'admin.html')
+
+
 @app.route("/api/getMessage", methods=["GET"])
 def get_message():
     return jsonify({"message": latest_message})
